@@ -26,6 +26,7 @@ var questionCounter = 0;
 var correctCounter = 0;
 var missedCounter = 0;
 var gameTimer = 10;
+var aTime = 6;
 var intervalID;
 var result;
 
@@ -69,7 +70,7 @@ function compareAnswer () {
         correctCounter++;
         questionCounter++;
         clearInterval(intervalID);
-        questionAvailable();
+        gameProgessCheck();
     }
 
     else {
@@ -77,51 +78,34 @@ function compareAnswer () {
         missedCounter++;
         questionCounter++;
         clearInterval(intervalID);
-        questionAvailable();
+        gameProgressCheck();
     }
 }
 
-function questionAvailable() {
-    if (questionCounter + 1 <= questionBank.length) {
-        questionTimer();
-    }
+// function questionAvailable() {
+//     if (questionCounter + 1 <= questionBank.length) {
+//         questionTimer();
+//     }
 
-    else {
-        timerEnd();
-        console.log("No more questions remaining")
-    }
-}
-
-// function correctOutcome () {
-//     console.log("You got it right")
-//     correctCounter++;
-//     questionCounter++;
-//     clearInterval(intervalID);
-
-//     questionTimer();
+//     else {
+//         timerEnd();
+//         console.log("No more questions remaining")
+//     }
 // }
 
-// function incorrectOutcome () {
-//     console.log("You got it wrong")
-//     missedCounter++;
-//     questionCounter++;
-//     clearInterval(intervalID);
-//     questionTimer()
-// }
-
-// function timeoutAnswer () {
-//     setTimeout(displayAnswer, 1000*30)
-// }
-
-// function displayAnswer () {
-//     $("#wholeSection").html("Answer " + questionBank[questionCounter].correctAnswer)
-// }
-
-// questionTimer();
-// }
 // QUESTION DISPLAY FUNCTIONS ABOVE
 
 // TIMER FUNCTIONS BELOW
+function displayAnswer() {
+    aTime--;
+    console.log(aTime);
+    $("#display").html("<h2>" + "Time remaining: " + aTime + " seconds </h2>");
+}
+
+function answerTimer() {
+    clearInterval(intervalID);
+    intervalID = setInterval(displayAnswer, 1000);
+}
 
 function questionTimer(){
     gameTimer = 10;
@@ -138,30 +122,33 @@ function questionTimer(){
 
 }
 
+function gameProgressCheck() {
+    if(gameTimer === 0 && questionCounter + 1 < questionBank.length) {
+        clearInterval(intervalID);
+        answerTimer();
+        setTimeout(questionTimer, 1000*5);
+        questionCounter++;
+        console.log("Next question")
+    }
+
+    else if (gameTimer === 0 && questionCounter + 1 === questionBank.length) {
+        clearInterval(intervalID);
+        answerTimer();
+        timerEnd();
+        console.log("No more questions remaining")
+    }
+
+}
+
 function gamePace() {
     gameTimer--;
     $("#display").html("<h2>"+ "Time remaining: " + gameTimer + " seconds </h2>");
 
-    if(gameTimer === 0 && questionCounter + 1 < questionBank.length) {
-        // timerEnd();
-        
-        clearInterval(intervalID);
-        questionCounter++;
-        questionTimer();
-        console.log("Next question")
-
-    }
-
-    else if (gameTimer === 0 && questionCounter + 1 === questionBank.length) {
-        timerEnd();
-        console.log("No more questions remaining")
-    }
+    gameProgressCheck();
 }
 
 function timerEnd() {
     clearInterval(intervalID);
-    // questionCounter++;
-    // displayQuestion();
 }
 questionTimer()
 
