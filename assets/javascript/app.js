@@ -25,7 +25,7 @@ var questionBank = [
 var questionCounter = 0;
 var correctCounter = 0;
 var missedCounter = 0;
-var gameTimer = 60;
+var gameTimer = 10;
 var intervalID;
 var result;
 
@@ -65,30 +65,49 @@ $("#answerE").on("click", function(event){
 
 function compareAnswer () {
     if (result === questionBank[questionCounter].correctAnswer) {
-        correctOutcome();
+        console.log("You got it right")
+        correctCounter++;
+        questionCounter++;
+        clearInterval(intervalID);
+        questionAvailable();
     }
 
     else {
-        incorrectOutcome();
+        console.log("You got it wrong")
+        missedCounter++;
+        questionCounter++;
+        clearInterval(intervalID);
+        questionAvailable();
     }
 }
 
-function correctOutcome () {
-    console.log("You got it right")
-    correctCounter++;
-    questionCounter++;
-    clearInterval(intervalID);
+function questionAvailable() {
+    if (questionCounter + 1 <= questionBank.length) {
+        questionTimer();
+    }
 
-    questionTimer();
+    else {
+        timerEnd();
+        console.log("No more questions remaining")
+    }
 }
 
-function incorrectOutcome () {
-    console.log("You got it wrong")
-    missedCounter++;
-    questionCounter++;
-    clearInterval(intervalID);
-    questionTimer()
-}
+// function correctOutcome () {
+//     console.log("You got it right")
+//     correctCounter++;
+//     questionCounter++;
+//     clearInterval(intervalID);
+
+//     questionTimer();
+// }
+
+// function incorrectOutcome () {
+//     console.log("You got it wrong")
+//     missedCounter++;
+//     questionCounter++;
+//     clearInterval(intervalID);
+//     questionTimer()
+// }
 
 // function timeoutAnswer () {
 //     setTimeout(displayAnswer, 1000*30)
@@ -105,7 +124,7 @@ function incorrectOutcome () {
 // TIMER FUNCTIONS BELOW
 
 function questionTimer(){
-    gameTimer = 60;
+    gameTimer = 10;
     clearInterval(intervalID);
     intervalID = setInterval(gamePace, 1000);
     $("#correct").html(correctCounter);
