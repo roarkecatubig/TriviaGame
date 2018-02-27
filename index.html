@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Trivia Game</title>
+
+    <!-- Our CSS style sheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div id="display"></div>
+
+      <br>
+
+      <!-- Div containing our stopwatch controls -->
+
+    </div>
+
+    <div class="container" id="wholeSection">
+        <div class="row">
+            <div class="col">
+                <h1># Correct: <span id="correct"></span></h1>
+            </div>
+            <div class="col">
+                <h1># Missed: <span id="incorrect"></span></h1>
+            </div>
+        </div>
+        <div class="row">
+            <h1><span id="question">Question 1</span></h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <button id="answerA" value="A"><h1>A</h1></button>
+            </div>
+            <div class="col-lg-9">
+                <h1><span id="answerOne">Answer 1</span></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <button id="answerB" value="B"><h1>B</h1></button>
+            </div>
+            <div class="col-lg-9">
+                <h1><span id="answerTwo">Answer 2</span></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <button id="answerC" value="C"><h1>C</h1></button>
+            </div>
+            <div class="col-lg-9">
+                <h1><span id="answerThree">Answer 3</span></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <button id="answerD" value="D"><h1>D</h1></button>
+            </div>
+            <div class="col-lg-9">
+                <h1><span id="answerFour">Answer 4</span></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <button id="answerE" value="E"><h1>E</h1></button>
+            </div>
+            <div class="col-lg-9">
+                <h1><span id="answerFive">Answer 5</span></h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Script -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+  </body>
+
+</html>
