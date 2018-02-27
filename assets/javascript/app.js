@@ -25,25 +25,11 @@ var questionBank = [
 var questionCounter = 0;
 var correctCounter = 0;
 var missedCounter = 0;
-var gameTimer = 6;
+var gameTimer = 60;
 var intervalID;
 var result;
 
 // QUESTION DISPLAY FUNCTIONS BELOW
-
-// Displays question and answers.
-function displayQuestion() {
-    
-    gameTimer = 6;
-    questionTimer();
-    $("#correct").html(correctCounter);
-    $("#incorrect").html(missedCounter);
-    $("#question").html(questionBank[questionCounter].question);
-    $("#answerOne").html(questionBank[questionCounter].answers.answer1);
-    $("#answerTwo").html(questionBank[questionCounter].answers.answer2);
-    $("#answerThree").html(questionBank[questionCounter].answers.answer3);
-    $("#answerFour").html(questionBank[questionCounter].answers.answer4);
-    $("#answerFive").html(questionBank[questionCounter].answers.answer5);
 
 // Handles button clicks. 
 $("#answerA").on("click", function(event){
@@ -77,8 +63,8 @@ $("#answerE").on("click", function(event){
     compareAnswer(event);
 })
 
-function compareAnswer (guess) {
-    if (guess === questionBank[questionCounter].correctAnswer) {
+function compareAnswer () {
+    if (result === questionBank[questionCounter].correctAnswer) {
         correctOutcome();
     }
 
@@ -90,15 +76,18 @@ function compareAnswer (guess) {
 function correctOutcome () {
     console.log("You got it right")
     correctCounter++;
+    questionCounter++;
     clearInterval(intervalID);
-    displayQuestion();
+
+    questionTimer();
 }
 
 function incorrectOutcome () {
     console.log("You got it wrong")
     missedCounter++;
+    questionCounter++;
     clearInterval(intervalID);
-    displayQuestion()
+    questionTimer()
 }
 
 // function timeoutAnswer () {
@@ -109,38 +98,52 @@ function incorrectOutcome () {
 //     $("#wholeSection").html("Answer " + questionBank[questionCounter].correctAnswer)
 // }
 
-questionTimer();
-}
+// questionTimer();
+// }
 // QUESTION DISPLAY FUNCTIONS ABOVE
 
 // TIMER FUNCTIONS BELOW
 
 function questionTimer(){
+    gameTimer = 60;
     clearInterval(intervalID);
     intervalID = setInterval(gamePace, 1000);
+    $("#correct").html(correctCounter);
+    $("#incorrect").html(missedCounter);
+    $("#question").html(questionBank[questionCounter].question);
+    $("#answerOne").html(questionBank[questionCounter].answers.answer1);
+    $("#answerTwo").html(questionBank[questionCounter].answers.answer2);
+    $("#answerThree").html(questionBank[questionCounter].answers.answer3);
+    $("#answerFour").html(questionBank[questionCounter].answers.answer4);
+    $("#answerFive").html(questionBank[questionCounter].answers.answer5);
 
 }
 
 function gamePace() {
     gameTimer--;
     $("#display").html("<h2>"+ "Time remaining: " + gameTimer + " seconds </h2>");
-    console.log(gameTimer)
 
-    if(gameTimer === 0) {
+    if(gameTimer === 0 && questionCounter + 1 < questionBank.length) {
         // timerEnd();
         
         clearInterval(intervalID);
         questionCounter++;
-        displayQuestion();
+        questionTimer();
+        console.log("Next question")
 
+    }
+
+    else if (gameTimer === 0 && questionCounter + 1 === questionBank.length) {
+        timerEnd();
+        console.log("No more questions remaining")
     }
 }
 
-// function timerEnd() {
-//     clearInterval(intervalID);
-//     questionCounter++;
-//     displayQuestion();
-// }
-displayQuestion();
+function timerEnd() {
+    clearInterval(intervalID);
+    // questionCounter++;
+    // displayQuestion();
+}
+questionTimer()
 
 //TIMER FUNCTIONS ABOVE
