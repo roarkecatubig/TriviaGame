@@ -91,7 +91,7 @@ function gamePace() {
     gameTimer--;
     $("#display").html("<h2>"+ "Time remaining: " + gameTimer + " seconds </h2>");
     // gameProgressCheck();
-    if(gameTimer === 0) {
+    if (gameTimer === 0) {
         clearInterval(intervalID);
         answerTimer();
     }
@@ -106,8 +106,8 @@ function timerEnd() {
 function displayAnswer() {
     if (questionCounter + 1 < questionBank.length) {
         aTime--;
-        console.log(aTime);
         $("#display").html("<h2>" + "Time remaining: " + aTime + " seconds </h2>");
+        console.log(aTime);
         $("#question").html("The correct answer is " + questionBank[questionCounter].correctAnswer)
         
         if (aTime === 0) {
@@ -192,17 +192,17 @@ function compareAnswer () {
     if (gameTimer != 0 && result === questionBank[questionCounter].correctAnswer) {
         console.log("You got it right")
         correctCounter++;
-        questionCounter++;
+        // questionCounter++;
         clearInterval(intervalID);
-        gameProgessCheck();
+        answerTimer();
     }
 
     else {
         console.log("You got it wrong")
         missedCounter++;
-        questionCounter++;
+        // questionCounter++;
         clearInterval(intervalID);
-        gameProgressCheck();
+        answerTimer();
     }
 }
 
