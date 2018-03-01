@@ -85,18 +85,11 @@ function questionTimer(){
     $("#correct").html(correctCounter);
     $("#incorrect").html(missedCounter);
     $("#question").html(questionBank[questionCounter].question);
-    $("#answerOne").html(questionBank[questionCounter].answers.answer1);
-    $("#answerOne").on("click", compareAnswer);
-    $("#answerTwo").html(questionBank[questionCounter].answers.answer2);
-    $("#answerTwo").on("click", compareAnswer);
-    $("#answerThree").html(questionBank[questionCounter].answers.answer3);
-    $("#answerThree").on("click", compareAnswer);
-    $("#answerFour").html(questionBank[questionCounter].answers.answer4);
-    $("#answerFour").on("click", compareAnswer);
-    $("#answerFive").html(questionBank[questionCounter].answers.answer5);
-    $("#answerFive").on("click", compareAnswer);
-    $("#start").on("click", reset);
-    $("#reset").on("click", reset);
+    $("#answerOne").html("<h2>A: " + questionBank[questionCounter].answers.answer1 + "</h2>");
+    $("#answerTwo").html("<h2>B: " + questionBank[questionCounter].answers.answer2 + "</h2>");
+    $("#answerThree").html("<h2>C: " + questionBank[questionCounter].answers.answer3 + "</h2>");
+    $("#answerFour").html("<h2>D: " + questionBank[questionCounter].answers.answer4 + "</h2>");
+    $("#answerFive").html("<h2>E: " + questionBank[questionCounter].answers.answer5 + "</h2>");
 
 }
 
@@ -173,7 +166,7 @@ function compareAnswer () {
         answerTimer();
     }
 
-    else {
+    else if (gameTimer != 0 && result != questionBank[questionCounter].correctAnswer) {
         missedCounter++;
         $("#answerPrompt").html("<h3>Sorry you got it wrong!<h3>")
         $("#incorrectHeader").css({"background-color":"red"});

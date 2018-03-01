@@ -2,15 +2,14 @@
     padding-bottom: 1%;
 }
 
-/* #reset, #start {
+#reset, #start {
     margin-left: 5%;
-    font-size: small;
     
-} */
+}
 
 .gameButton {
     width: 35%;
-    margin-left: 10%;
+    margin: auto;
 }
 
 .responses {
