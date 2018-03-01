@@ -11,23 +11,24 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Hind|Indie+Flower" rel="stylesheet">
 
   </head>
 
   <body>
     <div class="jumbotron jumbotron-fluid">
-        <div class="container">
+        <div idclass="container">
             <h1 class="display-4 text-center">Avatar: The Last Airbender Trivia Game</h1>
-            <p class="lead text-center">Answer questions related to the world of Nickelodeon's TV "Avatar: The Last Airbender"</p>
+            <p id="gameDesc" class="lead text-center">Answer questions related to the world of Nickelodeon's TV show "Avatar: The Last Airbender"</p>
             <div class="row text-center">
-                <button id="start" class="btn btn-primary btn-lg">Start Game</button>
-                <button id="reset" class="btn btn-danger btn-lg">Restart Game</button>
+                <button id="start" class="btn btn-primary btn-lg"><h4>Start Game</h4></button>
+                <button id="reset" class="btn btn-danger btn-lg"><h4>Restart Game</h4></button>
             </div>
         </div>
     </div>
     <div class="container">
         <div class = "row text-center">
-                <h2><span id="display">Time Remaining: </span></h2>
+                <h3><span id="display">Time Remaining: </span></h3>
         </div>
         <div class="row text-center">
             <div class="col-lg-2">
@@ -49,45 +50,30 @@
                 </div>
             </div>
         </div>
-        <div class="row buttonSpace">
+        <div class="row text-center buttonSpace">
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-info btn-default gameButton" id="answerA" value="A"><span id="answerOne"><h2>A</h2></span></button>
             </div>
-            <!-- <div class="col-lg">
-                <h3><span id="answerOne" class="responses">Answer 1</span></h3>
-            </div> -->
         </div>
         <div class="row buttonSpace">
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-info btn-default gameButton" id="answerB" value="B"><span id="answerTwo"><h2>B</h2></span></button>
             </div>
-            <!-- <div class="col-lg">
-                <h1><span id="answerTwo" class="responses">Answer 2</span></h1>
-            </div> -->
         </div>
         <div class="row buttonSpace">
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-info btn-default gameButton" id="answerC" value="C"><span id="answerThree"><h2>C</h2></span></button>
             </div>
-            <!-- <div class="col-lg">
-                <h1><span id="answerThree" class="responses">Answer 3</span></h1>
-            </div> -->
         </div>
         <div class="row buttonSpace">
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-info btn-default gameButton" id="answerD" value="D"><span id="answerFour"><h2>D</h2></span></button>
             </div>
-            <!-- <div class="col-lg">
-                <h1><span id="answerFour" class="responses">Answer 4</span></h1>
-            </div> -->
         </div>
         <div class="row buttonSpace">
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-info btn-default gameButton" id="answerE" value="E"><span id="answerFive"><h2>E</h2></span></button>
             </div>
-            <!-- <div class="col-lg">
-                <h1><span id="answerFive" class="responses">Answer 5</span></h1>
-            </div> -->
         </div>
     </div>
 

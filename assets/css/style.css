@@ -18,4 +18,16 @@
 
 .jumbotron {
     margin-bottom: 0;
+    font-family: 'Indie Flower', cursive;
+    background-image: url("../images/seigaiha.png")
 }
+
+h3, h4, #gameDesc {
+    font-family: 'Hind', sans-serif;
+}
+
+body {
+    background-image: url("../images/avatar.jpg");
+    background-size: contain;
+}
+
