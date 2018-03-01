@@ -17,66 +17,79 @@
   <body>
 
     <div class="container">
-
-      <div id="display"></div>
-
-      <br>
-
-      <!-- Div containing our stopwatch controls -->
-
-    </div>
-
-    <div class="container" id="wholeSection">
-        <div class="row">
-            <div class="col">
+        <div class = "row text-center">
+                <h2><span id="display">Time Remaining: </span></h2>
+        </div>
+        <!-- <div class="row">
+            <div class="col-lg-6 text-center correct rightWrong">
                 <h1># Correct: <span id="correct"></span></h1>
             </div>
-            <div class="col">
+            <div class="col-lg-6 text-center incorrect rightWrong">
                 <h1># Missed: <span id="incorrect"></span></h1>
             </div>
-        </div>
-        <div class="row">
-            <h1><span id="question">Question 1</span></h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <button id="answerA" value="A"><h1>A</h1></button>
+        </div> -->
+        <div class="row text-center">
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Correct</h3></div>
+                    <div class="panel-body"><h3><span id="correct">#</span></h3></div>
+                </div>
             </div>
-            <div class="col-lg-9">
-                <h1><span id="answerOne">Answer 1</span></h1>
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3><span id="answerPrompt"></span></h3></div>
+                    <div class="panel-body"><h3><span id="question">Question 1</span></h3></div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <button id="answerB" value="B"><h1>B</h1></button>
-            </div>
-            <div class="col-lg-9">
-                <h1><span id="answerTwo">Answer 2</span></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <button id="answerC" value="C"><h1>C</h1></button>
-            </div>
-            <div class="col-lg-9">
-                <h1><span id="answerThree">Answer 3</span></h1>
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                        <div class="panel-heading"><h3>Incorrect</h3></div>
+                        <div class="panel-body"><h3><span id="incorrect">#</span></h3></div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <button id="answerD" value="D"><h1>D</h1></button>
+        <div class="row buttonSpace">
+            <div class="col-lg-6 text-center">
+                <button type="button" class="btn btn-info gameButton" id="answerA" value="A"><h1>A</h1></button>
             </div>
-            <div class="col-lg-9">
-                <h1><span id="answerFour">Answer 4</span></h1>
+            <div class="col-lg">
+                <h1><span id="answerOne" class="responses">Answer 1</span></h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <button id="answerE" value="E"><h1>E</h1></button>
+        <div class="row buttonSpace">
+            <div class="col-lg-6 text-center">
+                <button type="button" class="btn btn-info gameButton" id="answerB" value="B"><h1>B</h1></button>
             </div>
-            <div class="col-lg-9">
-                <h1><span id="answerFive">Answer 5</span></h1>
+            <div class="col-lg">
+                <h1><span id="answerTwo" class="responses">Answer 2</span></h1>
             </div>
+        </div>
+        <div class="row buttonSpace">
+            <div class="col-lg-6 text-center">
+                <button type="button" class="btn btn-info gameButton" id="answerC" value="C"><h1>C</h1></button>
+            </div>
+            <div class="col-lg">
+                <h1><span id="answerThree" class="responses">Answer 3</span></h1>
+            </div>
+        </div>
+        <div class="row buttonSpace">
+            <div class="col-lg-6 text-center">
+                <button type="button" class="btn btn-info gameButton" id="answerD" value="D"><h1>D</h1></button>
+            </div>
+            <div class="col-lg">
+                <h1><span id="answerFour" class="responses">Answer 4</span></h1>
+            </div>
+        </div>
+        <div class="row buttonSpace">
+            <div class="col-lg-6 text-center">
+                <button type="button" class="btn btn-info gameButton" id="answerE" value="E"><h1>E</h1></button>
+            </div>
+            <div class="col-lg">
+                <h1><span id="answerFive" class="responses">Answer 5</span></h1>
+            </div>
+        </div>
+        <div class="row text-center resetButton">
+            <button id="reset" class="btn btn-danger"><h1>Restart Game</h1></button>
         </div>
     </div>
 

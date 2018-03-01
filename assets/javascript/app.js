@@ -23,6 +23,7 @@ var questionBank = [
     correctAnswer: "B"
 }]
 var questionCounter = 0;
+var questionTracker = questionCounter + 1;
 var correctCounter = 0;
 var missedCounter = 0;
 var gameTimer = 10;
@@ -64,12 +65,24 @@ $("#answerE").on("click", function(event){
     compareAnswer(event);
 })
 
+function reset () {
+    questionCounter = 0;
+    questionTracker = questionCounter + 1;
+    correctCounter = 0;
+    missedCounter = 0;
+    gameTimer = 10;
+    aTime = 6;
+    intervalID;
+    result;
+    questionTimer();
+}
 
 // This function sets the timer per each question and sets up each of the buttons and appropriate html IDs with proper values.
 function questionTimer(){
     gameTimer = 10;
     clearInterval(intervalID);
     intervalID = setInterval(gamePace, 1000);
+    $("#answerPrompt").html("Question " + questionTracker);
     $("#correct").html(correctCounter);
     $("#incorrect").html(missedCounter);
     $("#question").html(questionBank[questionCounter].question);
@@ -83,6 +96,7 @@ function questionTimer(){
     $("#answerFour").on("click", compareAnswer);
     $("#answerFive").html(questionBank[questionCounter].answers.answer5);
     $("#answerFive").on("click", compareAnswer);
+    $("#reset").on("click", reset);
 
 }
 
@@ -93,6 +107,8 @@ function gamePace() {
     // gameProgressCheck();
     if (gameTimer === 0) {
         clearInterval(intervalID);
+        missedCounter++;
+        $("#incorrect").html(missedCounter);
         answerTimer();
     }
 }
@@ -119,9 +135,10 @@ function displayAnswer() {
     }
     else if (questionCounter + 1 === questionBank.length) {
         console.log("Went through second conditional")
+        questionTracker++;
+        $("#answerPrompt").html("Q" + questionTracker + ": No more questions remaining. Click 'Restart Game' to PLAY AGAIN")
         $("#question").html("The correct answer is " + questionBank[questionCounter].correctAnswer)
         timerEnd();
-        console.log("No more questions remaining")
     }
 }
     // if (aTime === 0) {
@@ -192,6 +209,7 @@ function compareAnswer () {
     if (gameTimer != 0 && result === questionBank[questionCounter].correctAnswer) {
         console.log("You got it right")
         correctCounter++;
+        $("#correct").html(correctCounter);
         // questionCounter++;
         clearInterval(intervalID);
         answerTimer();
@@ -200,6 +218,7 @@ function compareAnswer () {
     else {
         console.log("You got it wrong")
         missedCounter++;
+        $("#incorrect").html(missedCounter);
         // questionCounter++;
         clearInterval(intervalID);
         answerTimer();

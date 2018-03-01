@@ -1,0 +1,9 @@
+-General conversation
+-Phone interview screen
+-Technical phone interview
+    -Might be a phone call
+    -Might be able to code remotely and share your screen
+        -Be able to talk about things in a different way or explain what you did
+-In person interview w/ other engineers 
+
+Google Javascript Interview Question

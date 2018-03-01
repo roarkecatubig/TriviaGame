@@ -1,0 +1,31 @@
+.buttonSpace {
+    padding-bottom: 1%;
+}
+
+.rightWrong {
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 1%;
+}
+
+.correct {
+    background: lightgreen;
+}
+
+.incorrect {
+    background: yellow;
+}
+
+.resetButton {
+    padding-top: 1%;
+    margin: auto;
+}
+
+.gameButton {
+    width: 35%;
+    margin-left: 10%;
+}
+
+.responses {
+    text-align: right;
+}
