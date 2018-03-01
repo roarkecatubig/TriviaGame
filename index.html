@@ -15,23 +15,24 @@
   </head>
 
   <body>
-
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Avatar: The Last Airbender Trivia Game</h1>
+            <p class="lead text-center">Answer questions related to the world of Nickelodeon's TV "Avatar: The Last Airbender"</p>
+            <div class="row text-center">
+                <button id="start" class="btn btn-primary btn-default">Start Game</button>
+                <button id="reset" class="btn btn-danger btn-default">Restart Game</button>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class = "row text-center">
                 <h2><span id="display">Time Remaining: </span></h2>
         </div>
-        <!-- <div class="row">
-            <div class="col-lg-6 text-center correct rightWrong">
-                <h1># Correct: <span id="correct"></span></h1>
-            </div>
-            <div class="col-lg-6 text-center incorrect rightWrong">
-                <h1># Missed: <span id="incorrect"></span></h1>
-            </div>
-        </div> -->
         <div class="row text-center">
             <div class="col-lg-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Correct</h3></div>
+                    <div class="panel-heading" id="correctHeader"><h3>Correct</h3></div>
                     <div class="panel-body"><h3><span id="correct">#</span></h3></div>
                 </div>
             </div>
@@ -43,7 +44,7 @@
             </div>
             <div class="col-lg-2">
                 <div class="panel panel-default">
-                        <div class="panel-heading"><h3>Incorrect</h3></div>
+                        <div class="panel-heading" id="incorrectHeader"><h3>Incorrect</h3></div>
                         <div class="panel-body"><h3><span id="incorrect">#</span></h3></div>
                 </div>
             </div>
@@ -87,9 +88,6 @@
             <div class="col-lg">
                 <h1><span id="answerFive" class="responses">Answer 5</span></h1>
             </div>
-        </div>
-        <div class="row text-center resetButton">
-            <button id="reset" class="btn btn-danger"><h1>Restart Game</h1></button>
         </div>
     </div>
 

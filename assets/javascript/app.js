@@ -36,34 +36,31 @@ var result;
 // Handles button clicks. 
 $("#answerA").on("click", function(event){
     result = $("#answerA").val();
-    console.log(result);
     compareAnswer(event);
-
 })
 
 $("#answerB").on("click", function(event){
     result = $("#answerB").val();
-    console.log(result);
     compareAnswer(event);
 })
 
 $("#answerC").on("click", function(event){
     result = $("#answerC").val();
-    console.log(result);
     compareAnswer(event);
 })
 
 $("#answerD").on("click", function(event){
     result = $("#answerD").val();
-    console.log(result);
     compareAnswer(event);
 })
 
 $("#answerE").on("click", function(event){
     result = $("#answerE").val();
-    console.log(result);
     compareAnswer(event);
 })
+
+$("#start").on("click", reset);
+$("#reset").on("click", reset);
 
 function reset () {
     questionCounter = 0;
@@ -74,6 +71,8 @@ function reset () {
     aTime = 6;
     intervalID;
     result;
+    $("#correctHeader").css({"background-color": "#f5f5f5"});
+    $("#incorrectHeader").css({"background-color": "#f5f5f5"});
     questionTimer();
 }
 
@@ -96,6 +95,7 @@ function questionTimer(){
     $("#answerFour").on("click", compareAnswer);
     $("#answerFive").html(questionBank[questionCounter].answers.answer5);
     $("#answerFive").on("click", compareAnswer);
+    $("#start").on("click", reset);
     $("#reset").on("click", reset);
 
 }
@@ -104,7 +104,6 @@ function questionTimer(){
 function gamePace() {
     gameTimer--;
     $("#display").html("<h2>"+ "Time remaining: " + gameTimer + " seconds </h2>");
-    // gameProgressCheck();
     if (gameTimer === 0) {
         clearInterval(intervalID);
         missedCounter++;
@@ -114,117 +113,76 @@ function gamePace() {
 }
 // When a scenario occurs where the timer is no longer needed, this function will end the timer. 
 function timerEnd() {
-    console.log("Got to timerEnd function")
     clearInterval(intervalID);
 }
 
 // These next two functions are a separate timer for the answer when it is displayed.
 function displayAnswer() {
-    if (questionCounter + 1 < questionBank.length) {
+    $("#question").html("The correct answer is " + questionBank[questionCounter].correctAnswer)
+    if (questionCounter + 1 < questionBank.length && gameTimer != 0) {
         aTime--;
-        $("#display").html("<h2>" + "Time remaining: " + aTime + " seconds </h2>");
-        console.log(aTime);
-        $("#question").html("The correct answer is " + questionBank[questionCounter].correctAnswer)
+        $("#display").html("<h2>Time remaining: " + aTime + " seconds </h2>");
         
         if (aTime === 0) {
-            console.log("Went through first conditional")
-            questionCounter++;
-            clearInterval(intervalID)
-            questionTimer();
+            answerJquery()
         }
     }
-    else if (questionCounter + 1 === questionBank.length) {
-        console.log("Went through second conditional")
-        questionTracker++;
-        $("#answerPrompt").html("Q" + questionTracker + ": No more questions remaining. Click 'Restart Game' to PLAY AGAIN")
-        $("#question").html("The correct answer is " + questionBank[questionCounter].correctAnswer)
+    else if (questionCounter + 1 < questionBank.length && gameTimer === 0) {
+        aTime--;
+        $("#display").html("<h2>You ran out of time. Time remaining: " + aTime + " seconds </h2>");
+        $("#incorrectHeader").css({"background-color":"red"});
+        
+        if (aTime === 0) {
+            answerJquery();
+        }
+    }
+    else if (questionCounter + 1 === questionBank.length && gameTimer ===0) {
+        $("#display").html("Q" + questionTracker + ": No more questions remaining. Click 'Restart Game' to PLAY AGAIN")
+        $("#incorrectHeader").css({"background-color":"red"});
+        timerEnd();
+    }
+    else if(questionCounter + 1 === questionBank.length) {
+        $("#display").html("Q" + questionTracker + ": No more questions remaining. Click 'Restart Game' to PLAY AGAIN")
         timerEnd();
     }
 }
-    // if (aTime === 0) {
-    //     if (questionCounter + 1 < questionBank.length) {
-    //         console.log("Went through first conditional")
-            // questionCounter++;
-            // clearInterval(intervalID)
-            // questionTimer();
-        // }
-
-        // else if (questionCounter + 1 === questionBank.length) {
-        //     console.log("Went through second conditional")
-        //     clearInterval(intervalID)
-        //     console.log("No more questions remaining")
-        // }
-//     }
-// }
 
 function answerTimer() {
     clearInterval(intervalID);
     intervalID = setInterval(displayAnswer, 1000);
 }
 
-// function questionAvailable() {
-//     if (questionCounter + 1 < questionBank.length) {
-//         questionCounter++;
-//         clearInterval(intervalID)
-//         questionTimer();
-//     }
-
-//     else if (questionCounter + 1 === questionBank.length) {
-//         timerEnd();
-//         console.log("No more questions remaining")
-//     }
-// }
-
-// This function checks to see if there's any more questions to cycle through. If there are no more remaining questions, it will end the game. 
-// function gameProgressCheck() {
-//     // Situation 2: For the next two conditional statements, if the user does not input any answer, it will show the answer and either move on to the next question or end the game.
-//     if(gameTimer === 0) {
-//         clearInterval(intervalID);
-//         answerTimer();
-//         // setTimeout(questionTimer, 1000*5);
-//         // console.log("Next question")
-//     }
-
-//     else if (gameTimer === 0 && questionCounter + 1 === questionBank.length) {
-//         clearInterval(intervalID);
-//         answerTimer();
-//         // setTimeout(questionTimer, 1000*5);
-//         // timerEnd();
-//         // console.log("No more questions remaining")
-//     }
-//     // 
-//     // else if(gameTimer !=0 && questionCounter + 1 === questionBank.length) {
-//     //     clearInterval(intervalID);
-//     //     // setTimeout(questionTimer, 1000*5);
-//     //     answerTimer();
-//     //     questionCounter++;
-//     //     console.log("Next question")
-//     // }
-// }
-
-
+function answerJquery() {
+    questionCounter++;
+    questionTracker++;
+    clearInterval(intervalID)
+    $("#correctHeader").css({"background-color": "#f5f5f5"});
+    $("#incorrectHeader").css({"background-color": "#f5f5f5"});
+    $("#answerPrompt").html("Question " + questionTracker);
+    questionTimer();
+}
 
 // Situation 1: If the user inputs an answer before the question timer runs out, the function will compare the answer and increment the appropriate counter as needed.
 function compareAnswer () {
     if (gameTimer != 0 && result === questionBank[questionCounter].correctAnswer) {
-        console.log("You got it right")
         correctCounter++;
+        $("#answerPrompt").html("<h3>You got it right!<h3>")
+        $("#correctHeader").css({"background-color":"lightgreen"});
         $("#correct").html(correctCounter);
-        // questionCounter++;
         clearInterval(intervalID);
         answerTimer();
     }
 
     else {
-        console.log("You got it wrong")
         missedCounter++;
+        $("#answerPrompt").html("<h3>Sorry you got it wrong!<h3>")
+        $("#incorrectHeader").css({"background-color":"red"});
         $("#incorrect").html(missedCounter);
-        // questionCounter++;
         clearInterval(intervalID);
         answerTimer();
     }
 }
 
-questionTimer()
+// GAME EXECUTION
+// questionTimer()
 
-//TIMER FUNCTIONS ABOVE
