@@ -67,7 +67,7 @@ var questionBank = [
     correctAnswer: "D"
     },
     {
-    question: "Following the Avatar cycle, what nation will yield the next Avatar after Aang?",
+    question: "Following the Avatar cycle, which nation will yield the next Avatar after Aang?",
     answers: {
         answer1: "The Fire Nation",
         answer2: "The Earth Kingdom",
@@ -115,8 +115,8 @@ var questionCounter = 0;
 var questionTracker = questionCounter + 1;
 var correctCounter = 0;
 var missedCounter = 0;
-var gameTimer = 10;
-var aTime = 6;
+var gameTimer = 31;
+var aTime = 11;
 var intervalID;
 var result;
 
@@ -156,8 +156,8 @@ function reset () {
     questionTracker = questionCounter + 1;
     correctCounter = 0;
     missedCounter = 0;
-    gameTimer = 10;
-    aTime = 6;
+    gameTimer = 31;
+    aTime = 11;
     intervalID;
     result;
     $("#correctHeader").css({"background-color": "#f5f5f5"});
@@ -167,7 +167,7 @@ function reset () {
 
 // This function sets the timer per each question and sets up each of the buttons and appropriate html IDs with proper values.
 function questionTimer(){
-    gameTimer = 10;
+    gameTimer = 31;
     clearInterval(intervalID);
     intervalID = setInterval(gamePace, 1000);
     $("#answerPrompt").html("Question " + questionTracker);
@@ -206,7 +206,7 @@ function displayAnswer() {
         $("#display").html("<h2>Time remaining: " + aTime + " seconds </h2>");
         
         if (aTime === 0) {
-            aTime =6;
+            aTime =11;
             answerJquery()
         }
     }
@@ -216,7 +216,7 @@ function displayAnswer() {
         $("#incorrectHeader").css({"background-color":"red"});
         
         if (aTime === 0) {
-            aTime =6;
+            aTime =11;
             answerJquery();
         }
     }
