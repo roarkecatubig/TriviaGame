@@ -40,7 +40,7 @@ var questionBank = [
         answer2: "Waterbending",
         answer3: "Earthbending",
         answer4: "Airbending",
-        answer5: "Lightningbending"
+        answer5: "Metalbending"
     },
     correctAnswer: "B"
     },
@@ -48,10 +48,10 @@ var questionBank = [
     question: "Each of the following are known forms of elemental bending EXCEPT",
     answers: {
         answer1: "Airbending",
-        answer2: "Lightningbending",
+        answer2: "Firebending",
         answer3: "Metalbending",
         answer4: "Bloodbending",
-        answer5: "Icebending"
+        answer5: "Soundbending"
     },
     correctAnswer: "E"
     },
@@ -151,6 +151,7 @@ $("#answerE").on("click", function(event){
 $("#start").on("click", reset);
 $("#reset").on("click", reset);
 
+// Resets the game and its variables.
 function reset () {
     questionCounter = 0;
     questionTracker = questionCounter + 1;
@@ -165,7 +166,7 @@ function reset () {
     questionTimer();
 }
 
-// This function sets the timer per each question and sets up each of the buttons and appropriate html IDs with proper values.
+// Sets the timer per each question and sets up each of the buttons and appropriate html IDs with proper values.
 function questionTimer(){
     gameTimer = 31;
     clearInterval(intervalID);
@@ -199,6 +200,7 @@ function timerEnd() {
 }
 
 // These next two functions are a separate timer for the answer when it is displayed.
+// It additionally generates certain updates to the game depending on how the user responds/doesn't respond.
 function displayAnswer() {
     $("#question").html("The correct answer is " + questionBank[questionCounter].correctAnswer)
     if (questionCounter + 1 < questionBank.length && gameTimer != 0) {
@@ -221,21 +223,22 @@ function displayAnswer() {
         }
     }
     else if (questionCounter + 1 === questionBank.length && gameTimer ===0) {
-        $("#display").html("Q" + questionTracker + ": No more questions remaining. Click 'Restart Game' to PLAY AGAIN")
+        $("#display").html("No more questions remaining. You got " + correctCounter + "/10 correct. Click 'Restart Game' to PLAY AGAIN")
         $("#incorrectHeader").css({"background-color":"red"});
         timerEnd();
     }
     else if(questionCounter + 1 === questionBank.length) {
-        $("#display").html("Q" + questionTracker + ": No more questions remaining. Click 'Restart Game' to PLAY AGAIN")
+        $("#display").html("No more questions remaining. You got " + correctCounter + "/10 correct. Click 'Restart Game' to PLAY AGAIN")
         timerEnd();
     }
 }
-
+// Similar timer set up for when the answer is displayed.
 function answerTimer() {
     clearInterval(intervalID);
     intervalID = setInterval(displayAnswer, 1000);
 }
 
+// Utilizes jQuery to update elements in the game.
 function answerJquery() {
     clearInterval(intervalID)
     questionCounter++;
@@ -246,7 +249,7 @@ function answerJquery() {
     questionTimer();
 }
 
-// Situation 1: If the user inputs an answer before the question timer runs out, the function will compare the answer and increment the appropriate counter as needed.
+// If the user inputs an answer before the question timer runs out, the function will compare the answer and increment the appropriate counter as needed.
 function compareAnswer () {
     if (gameTimer != 0 && result === questionBank[questionCounter].correctAnswer) {
         correctCounter++;
@@ -267,6 +270,4 @@ function compareAnswer () {
     }
 }
 
-// GAME EXECUTION
-// questionTimer()
 
